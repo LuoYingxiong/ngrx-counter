@@ -3,12 +3,7 @@ import {getToken} from './../auth/state/auth.selector';
 import {AppState} from './../store/app.state';
 import {Store} from '@ngrx/store';
 import {Injectable} from '@angular/core';
-import {
-    HttpInterceptor,
-    HttpEvent,
-    HttpHandler,
-    HttpRequest,
-} from '@angular/common/http';
+import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable()

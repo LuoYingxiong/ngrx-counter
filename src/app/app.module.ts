@@ -1,7 +1,7 @@
 import {CustomSerializer} from './store/router/custom-serializer';
 import {AuthTokenInterceptor} from './services/AuthToken.interceptor';
 import {AuthEffects} from './auth/state/auth.effects';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {EffectsModule} from '@ngrx/effects';
 import {appReducer} from './store/app.state';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
@@ -18,18 +18,15 @@ import {environment} from 'src/environments/environment';
 import {LoadingSpinnerComponent} from './shared/components/loading-spinner/loading-spinner.component';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         HomeComponent,
         HeaderComponent,
         LoadingSpinnerComponent,
     ],
-    imports: [
-        BrowserModule,
+    bootstrap: [AppComponent], imports: [BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        HttpClientModule,
         FormsModule,
         EffectsModule.forRoot([AuthEffects]),
         StoreModule.forRoot(appReducer),
@@ -38,12 +35,9 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
         }),
         StoreRouterConnectingModule.forRoot({
             serializer: CustomSerializer,
-        }),
-    ],
-    providers: [
-        {provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true},
-    ],
-    bootstrap: [AppComponent],
-})
+        })], providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {
 }
