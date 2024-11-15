@@ -113,7 +113,6 @@
       }
     }
   },
-  "defaultProject": "ngrx-counter",
   "cli": {
     "analytics": false
   }
