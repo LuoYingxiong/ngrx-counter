@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {CounterOutputComponent} from './counter-output.component';
 
@@ -6,7 +6,7 @@ describe('CounterOutputComponent', () => {
     let component: CounterOutputComponent;
     let fixture: ComponentFixture<CounterOutputComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [CounterOutputComponent]
         })
