@@ -32,7 +32,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
         StoreModule.forRoot(appReducer),
         StoreDevtoolsModule.instrument({
             logOnly: environment.production,
-        }),
+        connectInZone: true}),
         StoreRouterConnectingModule.forRoot({
             serializer: CustomSerializer,
         })], providers: [
